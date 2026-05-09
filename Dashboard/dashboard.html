@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MTSA Online Election Portal</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar glass">
+  <div class="logo">
+    <i class="fa-solid fa-vote-yea"></i>
+    <h2>Election Portal</h2>
+  </div>
+
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#candidates">Candidates</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#analytics">Analytics</a></li>
+    <li><a href="#logs">Activity Logs</a></li>
+  </ul>
+
+  <div class="nav-buttons">
+    <!--<button class="login-btn">
+      <i class="fa-solid fa-user"></i>
+      User Login
+    </button>-->
+
+    <button class="admin-btn">
+      <i class="fa-solid fa-lock"></i>
+      Admin
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="overlay"></div>
+  <div class="hero-content">
+    <h1>MTSA Online Voting System</h1>
+    <p>
+      Secure, Transparent and Real-Time Election Management Platform
+    </p>
+    <div class="hero-buttons">
+      <a href="../Login/login.html" class="vote-btn">
+        <i class="fa-solid fa-check-to-slot"></i>Vote Now</a>
+        
+      <a href="#results" class="result-btn">
+        <i class="fa-solid fa-chart-column"></i>View Results</a>
+    </div>
+  </div>
+
+</section>
+<!-- LIVE STATS -->
+<section class="stats">
+  <div class="stat-card glass">
+    <i class="fa-solid fa-users"></i>
+    <h2>14,298</h2>
+    <p>Total Votes</p>
+  </div>
+
+  <div class="stat-card glass">
+    <i class="fa-solid fa-user-tie"></i>
+    <h2>24</h2>
+    <p>Candidates</p>
+  </div>
+
+  <div class="stat-card glass">
+    <i class="fa-solid fa-chart-line"></i>
+    <h2>82%</h2>
+    <p>Turnout</p>
+  </div>
+
+  <div class="stat-card glass">
+    <i class="fa-solid fa-clock"></i>
+    <h2>Live</h2>
+    <p>Election Status</p>
+  </div>
+
+</section>
+
+<!-- CANDIDATES -->
+<section class="candidates-section" id="candidates">
+
+  <div class="section-title">
+    <h1>Featured Candidates</h1>
+    <p>Meet the candidates participating in the election</p>
+  </div>
+
+  <div class="candidate-grid">
+
+    <div class="candidate-card glass">
+      <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1200">
+
+      <div class="candidate-content">
+        <h2>Michael Johnson</h2>
+        <h3>President</h3>
+
+        <p>
+          "Leadership begins with integrity and service."
+        </p>
+
+        <div class="vote-bar">
+          <div class="vote-fill fill1"></div>
+        </div>
+
+        <span>42% Popularity</span>
+      </div>
+    </div>
+
+    <div class="candidate-card glass">
+      <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1200">
+
+      <div class="candidate-content">
+        <h2>Sarah Williams</h2>
+        <h3>Vice President</h3>
+
+        <p>
+          "Together we can shape a stronger future."
+        </p>
+
+        <div class="vote-bar">
+          <div class="vote-fill fill2"></div>
+        </div>
+
+        <span>38% Popularity</span>
+      </div>
+    </div>
+
+    <div class="candidate-card glass">
+      <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200">
+
+      <div class="candidate-content">
+        <h2>Daniel Brown</h2>
+        <h3>Treasurer</h3>
+
+        <p>
+          "Transparency and accountability for everyone."
+        </p>
+
+        <div class="vote-bar">
+          <div class="vote-fill fill3"></div>
+        </div>
+
+        <span>20% Popularity</span>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- RESULTS -->
+<section class="results-section" id="results">
+
+  <div class="section-title">
+    <h1>Live Election Results</h1>
+    <p>Current standings and voting percentages</p>
+  </div>
+
+  <div class="results-grid">
+
+    <div class="result-card glass">
+      <h2>#1 Michael Johnson</h2>
+      <p>5,400 Votes</p>
+      <span>42%</span>
+    </div>
+
+    <div class="result-card glass">
+      <h2>#2 Sarah Williams</h2>
+      <p>4,920 Votes</p>
+      <span>38%</span>
+    </div>
+
+    <div class="result-card glass">
+      <h2>#3 Daniel Brown</h2>
+      <p>3,978 Votes</p>
+      <span>20%</span>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ANALYTICS -->
+<section class="analytics-section" id="analytics">
+
+  <div class="section-title">
+    <h1>Election Analytics</h1>
+    <p>Real-time voting statistics and trends</p>
+  </div>
+
+  <div class="analytics-grid">
+
+    <div class="analytics-card glass">
+      <h2>Most Active Voting Hour</h2>
+      <h1>2PM - 4PM</h1>
+    </div>
+
+    <div class="analytics-card glass">
+      <h2>Leading Candidate</h2>
+      <h1>Michael Johnson</h1>
+    </div>
+
+    <div class="analytics-card glass">
+      <h2>Average Votes Per Minute</h2>
+      <h1>42</h1>
+    </div>
+
+  </div>
+
+  <div class="chart-container glass">
+    <canvas id="chart"></canvas>
+  </div>
+
+</section>
+
+<!-- ACTIVITY LOGS -->
+<section class="logs-section" id="logs">
+
+  <div class="section-title">
+    <h1>Live Activity Logs</h1>
+    <p>Real-time election activity feed</p>
+  </div>
+
+  <div class="logs-container glass" id="logsContainer">
+
+    <div class="log-item">
+      <span class="time">10:21 AM</span>
+      <p>Admin added candidate Michael Johnson</p>
+    </div>
+
+    <div class="log-item">
+      <span class="time">10:24 AM</span>
+      <p>User #203 voted for Sarah Williams</p>
+    </div>
+
+    <div class="log-item">
+      <span class="time">10:26 AM</span>
+      <p>Vote count updated successfully</p>
+    </div>
+
+    <div class="log-item">
+      <span class="time">10:28 AM</span>
+      <p>Admin edited election analytics</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Online Election Portal | Real-Time Voting System</p>
+</footer>
+
+<!-- CHART JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- JS -->
+<script src="dashboard.js"></script>
+
+</body>
+</html>
+
+
+

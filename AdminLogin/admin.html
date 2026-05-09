@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet" href="admin-style.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="admin-box">
+
+    <div class="admin-header">
+      <i class="fa-solid fa-shield-halved"></i>
+      <h2>Admin Panel</h2>
+      <p>Secure access only</p>
+    </div>
+
+    <form id="adminLoginForm">
+
+      <div class="input-group">
+        <i class="fa fa-user-shield"></i>
+        <input type="text" placeholder="Admin Username" required>
+      </div>
+
+      <div class="input-group">
+        <i class="fa fa-lock"></i>
+        <input type="password" id="adminPassword" placeholder="Password" required>
+      </div>
+
+      <div class="options">
+        <label>
+          <input type="checkbox" id="toggleAdminPassword"> Show Password
+        </label>
+      </div>
+
+      <button type="submit">
+        <i class="fa fa-sign-in-alt"></i> Login as Admin
+      </button>
+
+      <div class="footer-links">
+        <a href="../Login/login.html">← Back to User Login</a>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+<script src="admin-script.js"></script>
+</body>
+</html>
