@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Election Admin Panel</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="ad_Dash.css">
+
+<script type="module" src="ad_Dash.js" defer></script>
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2>EC Admin</h2>
+
+    <nav>
+      <a class="active" data-page="dashboard">Dashboard</a>
+      <a data-page="candidates">Candidates</a>
+      <a data-page="admins">Admins</a>
+      <a onclick="addAdmin()">Add Admin</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <header class="topbar">
+      <h1>Election Administration</h1>
+    </header>
+
+    <div class="grid">
+
+      <!-- DASHBOARD -->
+      <section id="dashboard" class="page active-page card full">
+        <h3>📊 Dashboard</h3>
+        <p>Welcome to the Election Control Panel.</p>
+      </section>
+
+      <!-- CANDIDATES -->
+      <section id="candidates" class="page">
+
+        <div class="card">
+          <h3>Add Candidate</h3>
+
+          <input id="firstname" placeholder="First Name">
+          <input id="surname" placeholder="Surname">
+
+          <select id="position"></select>
+
+          <textarea id="quote" placeholder="100–150 character manifesto"></textarea>
+
+          <input type="file" id="imageUpload" accept="image/*">
+
+          <img id="previewImg" class="preview"
+            src="https://api.dicebear.com/7.x/initials/svg?seed=EC">
+
+          <button onclick="addCandidate()">Add Candidate</button>
+        </div>
+
+        <div class="card">
+          <h3>Candidates</h3>
+          <div id="candidateList"></div>
+        </div>
+
+      </section>
+
+      <!-- ADMINS -->
+      <section id="admins" class="page card full">
+
+        <h3>System Admins</h3>
+        <div id="adminList"></div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+</div>
+
+</body>
+</html>
