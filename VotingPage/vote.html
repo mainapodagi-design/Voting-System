@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Student Leadership Voting</title>
+<link rel="stylesheet" href="vote.css" />
+</head>
+<body>
+<header>
+<h2>Student Leadership Voting Portal</h2>
+</header>
+
+<div class="container" id="votePage">
+
+<div class="card">
+<div class="position-title">President</div>
+<div class="candidates">
+<label class="candidate"><span>Alice Tau</span><input type="radio" name="President" value="Alice Tau"></label>
+<label class="candidate"><span>Brian Kila</span><input type="radio" name="President" value="Brian Kila"></label>
+<label class="candidate"><span>Mary Lomo</span><input type="radio" name="President" value="Mary Lomo"></label>
+</div>
+<div class="actions">
+<button class="clear" onclick="clearChoice('President')">Clear</button>
+</div>
+</div>
+
+<div class="card">
+<div class="position-title">Vice President</div>
+<div class="candidates">
+<label class="candidate"><span>John Kewa</span><input type="radio" name="Vice President" value="John Kewa"></label>
+<label class="candidate"><span>Sarah Paki</span><input type="radio" name="Vice President" value="Sarah Paki"></label>
+<label class="candidate"><span>David Mena</span><input type="radio" name="Vice President" value="David Mena"></label>
+</div>
+<div class="actions">
+<button class="clear" onclick="clearChoice('Vice President')">Clear</button>
+</div>
+</div>
+
+<div class="card">
+<div class="position-title">Secretary</div>
+<div class="candidates">
+<label class="candidate"><span>Lina Tom</span><input type="radio" name="Secretary" value="Lina Tom"></label>
+<label class="candidate"><span>Peter Saki</span><input type="radio" name="Secretary" value="Peter Saki"></label>
+<label class="candidate"><span>Grace Nali</span><input type="radio" name="Secretary" value="Grace Nali"></label>
+</div>
+<div class="actions">
+<button class="clear" onclick="clearChoice('Secretary')">Clear</button>
+</div>
+</div>
+
+<button class="submit" onclick="submitVote()">Submit Vote</button>
+
+</div>
+
+<div class="container" id="resultPage">
+<h2>Your Vote Results</h2>
+<div id="results"></div>
+</div>
+
+<script src="vote.js"></script>
+</body>
+</html>
+
+

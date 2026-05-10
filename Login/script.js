@@ -1,5 +1,6 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
 
 // ==========================
 // FIREBASE CONFIG
@@ -15,57 +16,46 @@ const firebaseConfig = {
 };
 
 // ==========================
-// INIT FIREBASE
+// INIT
 // ==========================
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getDatabase(app);
 
 // ==========================
-// ELEMENTS
+// FORM
 // ==========================
 const form = document.getElementById("loginForm");
 const passwordInput = document.getElementById("password");
 const togglePassword = document.getElementById("togglePassword");
 
-// ==========================
-// SHOW / HIDE PASSWORD (FIXED)
-// ==========================
+// password toggle
 togglePassword.addEventListener("change", () => {
   passwordInput.type = togglePassword.checked ? "text" : "password";
 });
 
-// ==========================
-// MESSAGE POPUP
-// ==========================
+// popup message
 function showMessage(text, color = "black") {
   let msg = document.getElementById("loginMessage");
 
   if (!msg) {
     msg = document.createElement("div");
     msg.id = "loginMessage";
-
-    // popup style
     msg.style.position = "fixed";
     msg.style.top = "20px";
     msg.style.left = "50%";
     msg.style.transform = "translateX(-50%)";
     msg.style.padding = "12px 20px";
     msg.style.borderRadius = "8px";
-    msg.style.fontSize = "14px";
+    msg.style.color = "white";
     msg.style.zIndex = "9999";
-    msg.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
-    
     document.body.appendChild(msg);
   }
 
   msg.innerText = text;
   msg.style.background = color;
-  msg.style.color = "white";
 
-  // auto hide
-  setTimeout(() => {
-    msg.remove();
-  }, 2500);
+  setTimeout(() => msg.remove(), 2500);
 }
 
 // ==========================
@@ -85,12 +75,22 @@ form.addEventListener("submit", async (e) => {
       email = input + "@student.dwu.ac.pg";
     }
 
-    await signInWithEmailAndPassword(auth, email, password);
+    // 1. AUTH LOGIN (THIS IS THE REAL CHECK)
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    // 2. OPTIONAL: fetch user data from Realtime Database
+    const snapshot = await get(ref(db, "students/" + user.uid));
+
+    if (snapshot.exists()) {
+      const data = snapshot.val();
+      console.log("User profile:", data);
+    }
 
     showMessage("Login successful ✔", "green");
 
     setTimeout(() => {
-      window.location.href = "../dashboard.html";
+      window.location.href = "../VotingPage/vote.html";
     }, 1500);
 
   } catch (error) {
