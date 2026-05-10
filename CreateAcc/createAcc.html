@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DWU Student Registration</title>
 
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Icons -->
+    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
     <!-- Google Font -->
@@ -20,88 +21,186 @@
 
 <div class="main-container">
 
-    <!-- Left Side Branding -->
+    <!-- LEFT SIDE -->
     <div class="left-panel">
         <h1>Morobe Tutumang Students Association DWU</h1>
-        <p>Create your student account to access the voting system.</p>
+
+        <p>
+            Create your student account to access the voting system.
+        </p>
     </div>
 
-    <!-- Form -->
+
+    <!-- RIGHT SIDE FORM -->
     <div class="form-panel">
+
         <form id="registerForm">
 
             <h2>Create Account</h2>
 
             <div class="grid">
 
+                <!-- FIRST NAME -->
                 <div class="input-group">
                     <i class="fa fa-user"></i>
-                    <input type="text" id="firstname" placeholder="First Name" required>
+
+                    <input
+                        type="text"
+                        id="firstname"
+                        placeholder="First Name"
+                        required
+                    >
                 </div>
 
+
+                <!-- MIDDLE NAME -->
                 <div class="input-group">
                     <i class="fa fa-user"></i>
-                    <input type="text" id="middlename" placeholder="Middle Name">
+
+                    <input
+                        type="text"
+                        id="middlename"
+                        placeholder="Middle Name"
+                    >
                 </div>
 
+
+                <!-- LAST NAME -->
                 <div class="input-group">
                     <i class="fa fa-user"></i>
-                    <input type="text" id="lastname" placeholder="Last Name" required>
+
+                    <input
+                        type="text"
+                        id="lastname"
+                        placeholder="Last Name"
+                        required
+                    >
                 </div>
 
+
+                <!-- STUDENT ID -->
                 <div class="input-group">
                     <i class="fa fa-id-card"></i>
-                    <input type="text" id="studentID" placeholder="Student ID" required>
+
+                    <input
+                        type="text"
+                        id="studentID"
+                        placeholder="Student ID"
+                        required
+                    >
                 </div>
 
+
+                <!-- EMAIL -->
                 <div class="input-group full">
                     <i class="fa fa-envelope"></i>
-                    <input type="email" id="email" placeholder="Auto-generated email" readonly>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Auto-generated email"
+                        readonly
+                    >
                 </div>
 
+
+                <!-- FACULTY -->
                 <div class="input-group">
                     <i class="fa fa-building"></i>
+
                     <select id="faculty" required>
-                        <option value="">Select Faculty</option>
-                        <option>Faculty of Business</option>
-                        <option>Faculty of IT</option>
-                        <option>Faculty of Health Sciences</option>
-                        <option>Faculty of Education</option>
+
+                        <option value="">
+                            Select Faculty
+                        </option>
+
+                        <option value="fbi">
+                            Faculty of Business and Information System
+                        </option>
+
+                        <option value="fmhs">
+                            Faculty of Medicine and Health Science
+                        </option>
+
+                        <option value="fass">
+                            Faculty of Arts and Social Sciences
+                        </option>
+
+                        <option value="education">
+                            Faculty of Education
+                        </option>
+
+                        <option value="flc">
+                            Flexible Learning Center
+                        </option>
+
+                        <option value="clt">
+                            Center for Learning and Teaching
+                        </option>
+
                     </select>
                 </div>
 
+
+                <!-- COURSE / DEPARTMENT -->
                 <div class="input-group">
                     <i class="fa fa-book"></i>
+
                     <select id="course" required>
-                        <option value="">Select Course</option>
-                        <option>Computer Science</option>
-                        <option>Accounting</option>
-                        <option>Nursing</option>
-                        <option>Education</option>
+
+                        <option value="">
+                            Select Department
+                        </option>
+
                     </select>
                 </div>
 
+
+                <!-- PASSWORD -->
                 <div class="input-group">
                     <i class="fa fa-lock"></i>
-                    <input type="password" id="password" placeholder="Password" required>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Password"
+                        required
+                    >
                 </div>
 
+
+                <!-- CONFIRM PASSWORD -->
                 <div class="input-group">
                     <i class="fa fa-lock"></i>
-                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Confirm Password"
+                        required
+                    >
                 </div>
 
             </div>
 
-            <button type="submit">Create Account</button>
 
+            <!-- SUBMIT BUTTON -->
+            <button type="submit">
+                Create Account
+            </button>
+
+
+            <!-- MESSAGE -->
             <p id="message"></p>
 
         </form>
+
     </div>
 
 </div>
 
+<!-- JAVASCRIPT -->
 <script type="module" src="script.js"></script>
+
 </body>
 </html>
