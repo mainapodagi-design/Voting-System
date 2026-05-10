@@ -1,5 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-analytics.js";
+
 import {
     getAuth,
     createUserWithEmailAndPassword
@@ -8,151 +10,227 @@ import {
 import {
     getDatabase,
     ref,
-    set
+    set,
+    get,
+    child
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
 
 
-// ==========================
+// ======================================
 // FIREBASE CONFIG
-// ==========================
+// ======================================
 const firebaseConfig = {
     apiKey: "AIzaSyDJGM-_sV1SDgES4Vr9UwOHEoQlr_2wJsw",
     authDomain: "mtsa-voting-system-backhand.firebaseapp.com",
-    databaseURL: "https://mtsa-voting-system-backhand-default-rtdb.asia-southeast1.firebasedatabase.app",
+    databaseURL:
+        "https://mtsa-voting-system-backhand-default-rtdb.asia-southeast1.firebasedatabase.app",
+
     projectId: "mtsa-voting-system-backhand",
-    storageBucket: "mtsa-voting-system-backhand.firebasestorage.app",
+
+    storageBucket:
+        "mtsa-voting-system-backhand.firebasestorage.app",
+
     messagingSenderId: "703541465424",
-    appId: "1:703541465424:web:003fe43a403282b9169c55",
+
+    appId:
+        "1:703541465424:web:003fe43a403282b9169c55",
+
     measurementId: "G-RT8547KM4E"
 };
 
 
-// ==========================
+// ======================================
 // INITIALIZE FIREBASE
-// ==========================
+// ======================================
 const app = initializeApp(firebaseConfig);
+
 const analytics = getAnalytics(app);
 
 const auth = getAuth(app);
+
 const db = getDatabase(app);
 
 
-// ==========================
+// ======================================
 // FORM ELEMENTS
-// ==========================
-const form = document.getElementById("registerForm");
+// ======================================
+const form =
+    document.getElementById("registerForm");
 
-const firstnameInput = document.getElementById("firstname");
-const middlenameInput = document.getElementById("middlename");
-const lastnameInput = document.getElementById("lastname");
+const firstnameInput =
+    document.getElementById("firstname");
 
-const studentIDInput = document.getElementById("studentID");
+const middlenameInput =
+    document.getElementById("middlename");
 
-const emailInput = document.getElementById("email");
+const lastnameInput =
+    document.getElementById("lastname");
 
-const facultySelect = document.getElementById("faculty");
-const courseSelect = document.getElementById("course");
+const studentIDInput =
+    document.getElementById("studentID");
 
-const passwordInput = document.getElementById("password");
-const confirmPasswordInput = document.getElementById("confirmPassword");
+const emailInput =
+    document.getElementById("email");
 
-const message = document.getElementById("message");
+const facultySelect =
+    document.getElementById("faculty");
+
+const courseSelect =
+    document.getElementById("course");
+
+const passwordInput =
+    document.getElementById("password");
+
+const confirmPasswordInput =
+    document.getElementById("confirmPassword");
+
+const message =
+    document.getElementById("message");
 
 
-// ==========================
-// FACULTY & DEPARTMENTS
-// ==========================
+// ======================================
+// MESSAGE BOX FUNCTION
+// ======================================
+function showMessage(text, color) {
+
+    message.innerText = text;
+
+    message.style.display = "block";
+
+    message.style.padding = "12px";
+
+    message.style.marginTop = "15px";
+
+    message.style.borderRadius = "10px";
+
+    message.style.fontWeight = "600";
+
+    message.style.textAlign = "center";
+
+    message.style.color = color;
+
+    // BACKGROUND COLORS
+    if (color === "red") {
+
+        message.style.background =
+            "rgba(255,0,0,0.12)";
+
+    } else if (color === "green") {
+
+        message.style.background =
+            "rgba(0,255,0,0.12)";
+
+    } else {
+
+        message.style.background =
+            "rgba(0,0,255,0.12)";
+    }
+
+    // AUTO HIDE
+    setTimeout(() => {
+
+        message.style.display = "none";
+
+    }, 4000);
+}
+
+
+// ======================================
+// FACULTY DEPARTMENTS
+// ======================================
 const facultyDepartments = {
 
     fbi: [
-        "Mathematics and Computer Science",
-        "Finance and Management",
-        "Business Studies",
+        "Computer Science",
+        "Accounting",
+        "Business Management",
         "Information Systems",
-        "Tourism and Hospitality",
+        "Economics"
     ],
 
     fmhs: [
         "Nursing",
-        "Rural Health",
-        "Health Management and Systems Development",
-        "Medicicine",
-        "Public Health Leaership and Training",
-        "Rehabilitation Sciences",
+        "Public Health",
+        "Pharmacy",
+        "Medical Laboratory",
+        "Midwifery",
         "Environmental Health",
+        "Clinical Medicine"
     ],
 
     fass: [
-        "Governance and Leadership",
-        "Papua New Guinea and International Studies",
-        "Social and Religious Studies",
+        "Political Science",
+        "Psychology",
+        "Social Work",
         "Communication Arts"
     ],
 
     education: [
-        "Sciences",
-        "Humanities",
-        "Education Curriculum and Leadership",
-        "Educational and Professional Studies",
+        "Primary Education",
+        "Secondary Education",
+        "Curriculum Studies",
+        "Educational Leadership"
     ],
 
     clt: [
-        "Academic Excellence",
-        "Study Skills",
-        "Writing Labs",
-        "Numeracy Labs",
-        "Moodle Support",
-        "Personal Enrichment"
+        "Academic Support",
+        "Digital Learning",
+        "Teacher Training",
+        "Research Development",
+        "Curriculum Design",
+        "Assessment & Evaluation"
     ],
 
     flc: [
-        "Bachelor of Public Administration",
-        "Diploma in Justice Administration",
-        "Diploma in Pastorial Ministry",
-        "Diploma in Project Management",
-        "Master of Leadership in Development",
-        "Master of Public Administration",
-        "Bachelor of Management",
-        "Diploma in Business Studies",
-        "Diploma in Human Resource Management",
-        "Diploma in Management",
-        "Graduate Certificate in Data Networking",
-        "Master of Business Administration",
-        "Master of Leadership in Business Administration",
-        "Bachelor of Education (Primary, Inservice)",
-        "Doctor of Education",
-        "Master of Educational Leadership",
-        "Bachelor of Health Science (Rural Health, Inservice)",
-        "Diploma in Health Service Management",
-        "Master of Public Health – Health Services Management"
+        "Foundation English",
+        "Foundation Mathematics",
+        "Business Studies",
+        "ICT Fundamentals",
+        "Science Foundation",
+        "Communication Skills",
+        "Community Development",
+        "Hospitality",
+        "Tourism",
+        "Entrepreneurship",
+        "Office Administration",
+        "Agriculture",
+        "Basic Accounting",
+        "Human Resource",
+        "Marketing",
+        "Project Management",
+        "Statistics",
+        "Leadership Training",
+        "Adult Learning"
     ]
 };
 
 
-// ==========================
-// FACULTY DROPDOWN FUNCTION
-// ==========================
+// ======================================
+// FACULTY CHANGE EVENT
+// ======================================
 facultySelect.addEventListener("change", () => {
 
-    const selectedFaculty = facultySelect.value;
+    const selectedFaculty =
+        facultySelect.value;
 
     // CLEAR OLD OPTIONS
     courseSelect.innerHTML =
         '<option value="">Select Department</option>';
 
-    // IF NOTHING SELECTED
     if (selectedFaculty === "") return;
 
     // GET DEPARTMENTS
     const departments =
         facultyDepartments[selectedFaculty];
 
-    // ADD OPTIONS
+    // CREATE OPTIONS
     departments.forEach((department) => {
 
-        const option = document.createElement("option");
+        const option =
+            document.createElement("option");
 
         option.value = department;
+
         option.textContent = department;
 
         courseSelect.appendChild(option);
@@ -160,15 +238,16 @@ facultySelect.addEventListener("change", () => {
 });
 
 
-// ==========================
+// ======================================
 // AUTO EMAIL GENERATION
-// ==========================
+// ======================================
 studentIDInput.addEventListener("input", () => {
 
-    const id = studentIDInput.value.trim();
+    const id =
+        studentIDInput.value.trim();
 
-    // STUDENT ID MUST START WITH 2
-    // AND BE 6 DIGITS
+    // MUST START WITH 2
+    // MUST BE 6 DIGITS
     if (/^2\d{5}$/.test(id)) {
 
         emailInput.value =
@@ -181,9 +260,9 @@ studentIDInput.addEventListener("input", () => {
 });
 
 
-// ==========================
-// PASSWORD CONFIRMATION
-// ==========================
+// ======================================
+// PASSWORD MATCH CHECK
+// ======================================
 confirmPasswordInput.addEventListener("input", () => {
 
     if (
@@ -197,18 +276,62 @@ confirmPasswordInput.addEventListener("input", () => {
     } else {
 
         confirmPasswordInput.style.border =
-            "2px solid green";
+            "2px solid lime";
     }
 });
 
 
-// ==========================
+// ======================================
+// CHECK IF STUDENT EXISTS
+// ======================================
+async function studentExists(studentID) {
+
+    const dbRef = ref(db);
+
+    const snapshot =
+        await get(child(dbRef, "students"));
+
+    if (snapshot.exists()) {
+
+        const students = snapshot.val();
+
+        for (const uid in students) {
+
+            // CHECK STUDENT ID
+            if (
+                students[uid].student_id ===
+                studentID
+            ) {
+
+                return true;
+            }
+
+            // CHECK EMAIL
+            if (
+                students[uid].email ===
+                studentID +
+                "@student.dwu.ac.pg"
+            ) {
+
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+
+// ======================================
 // CREATE ACCOUNT
-// ==========================
+// ======================================
 form.addEventListener("submit", async (e) => {
 
     e.preventDefault();
 
+    // ======================================
+    // GET VALUES
+    // ======================================
     const firstname =
         firstnameInput.value.trim();
 
@@ -222,7 +345,8 @@ form.addEventListener("submit", async (e) => {
         studentIDInput.value.trim();
 
     const email =
-        studentID + "@student.dwu.ac.pg";
+        studentID +
+        "@student.dwu.ac.pg";
 
     const faculty =
         facultySelect.value;
@@ -237,57 +361,57 @@ form.addEventListener("submit", async (e) => {
         confirmPasswordInput.value;
 
 
-    // ==========================
+    // ======================================
     // VALIDATE STUDENT ID
-    // ==========================
+    // ======================================
     if (!/^2\d{5}$/.test(studentID)) {
 
-        message.innerText =
-            "Student ID must start with 2 and be 6 digits";
-
-        message.style.color = "red";
+        showMessage(
+            "Student ID must start with 2 and be 6 digits",
+            "red"
+        );
 
         return;
     }
 
 
-    // ==========================
-    // VALIDATE PASSWORD
-    // ==========================
+    // ======================================
+    // VALIDATE PASSWORDS
+    // ======================================
     if (password !== confirmPassword) {
 
-        message.innerText =
-            "Passwords do not match";
-
-        message.style.color = "red";
+        showMessage(
+            "Passwords do not match",
+            "red"
+        );
 
         return;
     }
 
 
-    // ==========================
+    // ======================================
     // VALIDATE FACULTY
-    // ==========================
+    // ======================================
     if (faculty === "") {
 
-        message.innerText =
-            "Please select a faculty";
-
-        message.style.color = "red";
+        showMessage(
+            "Please select a faculty",
+            "red"
+        );
 
         return;
     }
 
 
-    // ==========================
+    // ======================================
     // VALIDATE COURSE
-    // ==========================
+    // ======================================
     if (course === "") {
 
-        message.innerText =
-            "Please select a department";
-
-        message.style.color = "red";
+        showMessage(
+            "Please select a department",
+            "red"
+        );
 
         return;
     }
@@ -295,15 +419,35 @@ form.addEventListener("submit", async (e) => {
 
     try {
 
-        message.innerText =
-            "Creating account...";
+        // ======================================
+        // CHECK IF USER EXISTS
+        // ======================================
+        const exists =
+            await studentExists(studentID);
 
-        message.style.color = "blue";
+        if (exists) {
+
+            showMessage(
+                "Username already exists",
+                "red"
+            );
+
+            return;
+        }
 
 
-        // ==========================
-        // CREATE AUTH ACCOUNT
-        // ==========================
+        // ======================================
+        // LOADING MESSAGE
+        // ======================================
+        showMessage(
+            "Creating account...",
+            "blue"
+        );
+
+
+        // ======================================
+        // CREATE FIREBASE AUTH ACCOUNT
+        // ======================================
         const userCredential =
             await createUserWithEmailAndPassword(
                 auth,
@@ -315,14 +459,16 @@ form.addEventListener("submit", async (e) => {
             userCredential.user;
 
 
-        // ==========================
-        // SAVE TO REALTIME DATABASE
-        // ==========================
+        // ======================================
+        // SAVE USER DATA
+        // ======================================
         await set(
             ref(db, "students/" + user.uid),
             {
                 firstname: firstname,
+
                 middlename: middlename,
+
                 lastname: lastname,
 
                 student_id: studentID,
@@ -330,6 +476,7 @@ form.addEventListener("submit", async (e) => {
                 email: email,
 
                 faculty: faculty,
+
                 course: course,
 
                 createdAt:
@@ -338,14 +485,18 @@ form.addEventListener("submit", async (e) => {
         );
 
 
+        // ======================================
         // SUCCESS MESSAGE
-        message.innerText =
-            "Account created successfully!";
+        // ======================================
+        showMessage(
+            "Account created successfully!",
+            "green"
+        );
 
-        message.style.color = "green";
 
-
+        // ======================================
         // RESET FORM
+        // ======================================
         form.reset();
 
         emailInput.value = "";
@@ -353,14 +504,29 @@ form.addEventListener("submit", async (e) => {
         courseSelect.innerHTML =
             '<option value="">Select Department</option>';
 
-
     } catch (error) {
 
         console.error(error);
 
-        message.innerText =
-            error.message;
+        // ======================================
+        // EMAIL ALREADY EXISTS
+        // ======================================
+        if (
+            error.code ===
+            "auth/email-already-in-use"
+        ) {
 
-        message.style.color = "red";
+            showMessage(
+                "Username already exists",
+                "red"
+            );
+
+        } else {
+
+            showMessage(
+                error.message,
+                "red"
+            );
+        }
     }
 });
